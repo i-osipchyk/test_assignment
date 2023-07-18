@@ -1,0 +1,49 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" />
+    <script defer src="https://pyscript.net/alpha/pyscript.js"></script>
+    <py-env>
+            - matplotlib
+            - numpy
+    </py-env>
+</head>
+<body>
+    <div id="barchart"></div>
+    <py-script output="barchart">
+        import matplotlib.pyplot as plt
+        from matplotlib.ticker import MaxNLocator
+        import numpy as np
+
+        # retrieve differences
+        diff = {{ differences }}
+
+        # calculate mean
+        mean = np.mean(diff)
+
+        # create plot
+        fig, ax = plt.subplots()
+
+        # create x axis ticks
+        x = list(range(1, len(diff)+1))
+
+        # plot
+        plt.bar(x, diff)
+
+        # create line of average value
+        plt.axhline(mean, color='red', linestyle='--', label='Average')
+
+        # remove decimal values from the axis
+        plt.gca().xaxis.set_major_locator(MaxNLocator(integer=True))
+
+        # set labels and legend
+        plt.xlabel('Number of the period')
+        plt.ylabel('Seconds')
+        plt.title('Time Periods')
+        plt.legend()
+        fig
+    </py-script>
+</body>
+</html>

@@ -1,0 +1,14 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Averages</h2>
+    {{ data }}<br>
+    <a href='{{ url_for("visualize", differences=differences) }}'>Visualize Differences</a><br>
+    <h2>Counts</h2>
+    {{ counts }}
+</body>
+</html>
